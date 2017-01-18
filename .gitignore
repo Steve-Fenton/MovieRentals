@@ -3,3 +3,6 @@
 ################################################################################
 
 /MovieRentals/bin/Debug
+/MovieRentals/obj/Debug
+/MovieRentals.Tests/bin/Debug
+/MovieRentals.Tests/obj/Debug
