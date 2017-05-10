@@ -54,7 +54,7 @@ namespace MovieRentals
                         thisAmount += 1.5;
                         if (each.GetDaysRented() > 3)
                         {
-                            thisAmount = (each.GetDaysRented() - 4) * 1.5;
+                            thisAmount += (each.GetDaysRented() - 4) * 1.5;
                         }
                         break;
                 }

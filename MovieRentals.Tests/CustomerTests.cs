@@ -66,9 +66,9 @@ namespace MovieRentals.Tests
             Assert.AreEqual("Rental record for John Smith\n" +
                 "\tYes Man\t6\n" +
                 "\tBedtime Stories\t1.5\n" +
-                "\tMickey Mouse\t4.5\n" +
+                "\tMickey Mouse\t6\n" +
                 "\tBack To The Future\t8\n" +
-                "Amount owed is 20\n" +
+                "Amount owed is 21.5\n" +
                 "You earned 5 frequent renter points.", result);
         }
 
@@ -86,10 +86,10 @@ namespace MovieRentals.Tests
 
             Assert.AreEqual("Rental record for John Smith\n" +
                 "\tJaws XIV\t6\n" +
-                "\tBedtime Stories\t3\n" +
+                "\tBedtime Stories\t4.5\n" +
                 "\tBack To The Future\t3.5\n" +
                 "\tBack To The Future 2\t5\n" +
-                "Amount owed is 17.5\n" +
+                "Amount owed is 19\n" +
                 "You earned 5 frequent renter points.", result);
         }
     }
