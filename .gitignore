@@ -7,3 +7,6 @@
 /MovieRentals.Tests/bin/Debug
 /MovieRentals.Tests/obj/Debug
 /.vs/MovieRentals/v14/.suo
+/.vs
+/MovieRentals/obj/Release
+/MovieRentals.Tests/obj/Release
