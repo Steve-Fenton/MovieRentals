@@ -1,96 +1,101 @@
-﻿using System;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+namespace MovieRentals.Tests;
 
-namespace MovieRentals.Tests
+public class CustomerTests
 {
-    [TestClass]
-    public class CustomerTests
+    [Test]
+    public void StatementNewReleaseOneNight()
     {
-        [TestMethod]
-        public void StatementNewReleaseOneNight()
-        {
-            Customer customer = new Customer("John Smith");
+        Customer customer = new("John Smith");
 
-            customer.AddRental(new Rental(new Movie("Dawn of the Dead", Movie.NEW_RELEASE), 1));
+        customer.AddRental(new Rental(new Movie("Dawn of the Dead", Movie.NEW_RELEASE), 1));
 
-            string result = customer.Statement();
+        string result = customer.Statement();
 
-            Assert.AreEqual("Rental record for John Smith\n" +
-                "\tDawn of the Dead\t3\n" +
-                "Amount owed is 3\n" +
-                "You earned 1 frequent renter points.", result);
-        }
+        const string expected = "Rental record for John Smith\n" +
+            "\tDawn of the Dead\t3\n" +
+            "Amount owed is 3\n" +
+            "You earned 1 frequent renter points.";
 
-        [TestMethod]
-        public void StatementNewReleaseFourNights()
-        {
-            Customer customer = new Customer("John Smith");
+        Assert.That(result, Is.EqualTo(expected));
+    }
 
-            customer.AddRental(new Rental(new Movie("Evan Almighty", Movie.NEW_RELEASE), 4));
+    [Test]
+    public void StatementNewReleaseFourNights()
+    {
+        Customer customer = new("John Smith");
 
-            string result = customer.Statement();
+        customer.AddRental(new Rental(new Movie("Evan Almighty", Movie.NEW_RELEASE), 4));
 
-            Assert.AreEqual("Rental record for John Smith\n" +
-                "\tEvan Almighty\t12\n" +
-                "Amount owed is 12\n" +
-                "You earned 2 frequent renter points.", result);
-        }
+        string result = customer.Statement();
 
-        [TestMethod]
-        public void StatementNewReleaseSixNights()
-        {
-            Customer customer = new Customer("John Smith");
+        const string expected = "Rental record for John Smith\n" +
+            "\tEvan Almighty\t12\n" +
+            "Amount owed is 12\n" +
+            "You earned 2 frequent renter points.";
 
-            customer.AddRental(new Rental(new Movie("Yes Man", Movie.NEW_RELEASE), 6));
+        Assert.That(result, Is.EqualTo(expected));
+    }
 
-            string result = customer.Statement();
+    [Test]
+    public void StatementNewReleaseSixNights()
+    {
+        Customer customer = new("John Smith");
 
-            Assert.AreEqual("Rental record for John Smith\n" +
-                "\tYes Man\t18\n" +
-                "Amount owed is 18\n" +
-                "You earned 2 frequent renter points.", result);
-        }
+        customer.AddRental(new Rental(new Movie("Yes Man", Movie.NEW_RELEASE), 6));
 
-        [TestMethod]
-        public void StatementMultipleRentals()
-        {
-            Customer customer = new Customer("John Smith");
+        string result = customer.Statement();
 
-            customer.AddRental(new Rental(new Movie("Yes Man", Movie.NEW_RELEASE), 2));
-            customer.AddRental(new Rental(new Movie("Bedtime Stories", Movie.CHILDRENS), 2));
-            customer.AddRental(new Rental(new Movie("Mickey Mouse", Movie.CHILDRENS), 6));
-            customer.AddRental(new Rental(new Movie("Back To The Future", Movie.REGULAR), 6));
+        const string expected = "Rental record for John Smith\n" +
+            "\tYes Man\t18\n" +
+            "Amount owed is 18\n" +
+            "You earned 2 frequent renter points.";
 
-            string result = customer.Statement();
+        Assert.That(result, Is.EqualTo(expected));
+    }
 
-            Assert.AreEqual("Rental record for John Smith\n" +
-                "\tYes Man\t6\n" +
-                "\tBedtime Stories\t1.5\n" +
-                "\tMickey Mouse\t6\n" +
-                "\tBack To The Future\t8\n" +
-                "Amount owed is 21.5\n" +
-                "You earned 5 frequent renter points.", result);
-        }
+    [Test]
+    public void StatementMultipleRentals()
+    {
+        Customer customer = new("John Smith");
 
-        [TestMethod]
-        public void StatementMultipleRentals2()
-        {
-            Customer customer = new Customer("John Smith");
+        customer.AddRental(new Rental(new Movie("Yes Man", Movie.NEW_RELEASE), 2));
+        customer.AddRental(new Rental(new Movie("Bedtime Stories", Movie.CHILDRENS), 2));
+        customer.AddRental(new Rental(new Movie("Mickey Mouse", Movie.CHILDRENS), 6));
+        customer.AddRental(new Rental(new Movie("Back To The Future", Movie.REGULAR), 6));
 
-            customer.AddRental(new Rental(new Movie("Jaws XIV", Movie.NEW_RELEASE), 2));
-            customer.AddRental(new Rental(new Movie("Bedtime Stories", Movie.CHILDRENS), 5));
-            customer.AddRental(new Rental(new Movie("Back To The Future", Movie.REGULAR), 3));
-            customer.AddRental(new Rental(new Movie("Back To The Future 2", Movie.REGULAR), 4));
+        string result = customer.Statement();
 
-            string result = customer.Statement();
+        const string expected = "Rental record for John Smith\n" +
+            "\tYes Man\t6\n" +
+            "\tBedtime Stories\t1.5\n" +
+            "\tMickey Mouse\t6\n" +
+            "\tBack To The Future\t8\n" +
+            "Amount owed is 21.5\n" +
+            "You earned 5 frequent renter points.";
 
-            Assert.AreEqual("Rental record for John Smith\n" +
-                "\tJaws XIV\t6\n" +
-                "\tBedtime Stories\t4.5\n" +
-                "\tBack To The Future\t3.5\n" +
-                "\tBack To The Future 2\t5\n" +
-                "Amount owed is 19\n" +
-                "You earned 5 frequent renter points.", result);
-        }
+        Assert.That(result, Is.EqualTo(expected));
+    }
+
+    [Test]
+    public void StatementMultipleRentals2()
+    {
+        Customer customer = new("John Smith");
+
+        customer.AddRental(new Rental(new Movie("Jaws XIV", Movie.NEW_RELEASE), 2));
+        customer.AddRental(new Rental(new Movie("Bedtime Stories", Movie.CHILDRENS), 5));
+        customer.AddRental(new Rental(new Movie("Back To The Future", Movie.REGULAR), 3));
+        customer.AddRental(new Rental(new Movie("Back To The Future 2", Movie.REGULAR), 4));
+
+        string result = customer.Statement();
+
+        const string expected = "Rental record for John Smith\n" +
+            "\tJaws XIV\t6\n" +
+            "\tBedtime Stories\t4.5\n" +
+            "\tBack To The Future\t3.5\n" +
+            "\tBack To The Future 2\t5\n" +
+            "Amount owed is 19\n" +
+            "You earned 5 frequent renter points.";
+
+        Assert.That(result, Is.EqualTo(expected));
     }
 }

@@ -10,3 +10,5 @@
 /.vs
 /MovieRentals/obj/Release
 /MovieRentals.Tests/obj/Release
+/MovieRentals/obj
+/MovieRentals.Tests/obj
